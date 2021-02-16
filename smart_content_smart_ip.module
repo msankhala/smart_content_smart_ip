@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains smart_content_smart_ip.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function smart_content_smart_ip_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the smart_content_smart_ip module.
+    case 'help.page.smart_content_smart_ip':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Smart Content Condition based on smart ip.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function smart_content_smart_ip_theme() {
+  return [
+    'smart_content_smart_ip' => [
+      'render element' => 'children',
+    ],
+  ];
+}
