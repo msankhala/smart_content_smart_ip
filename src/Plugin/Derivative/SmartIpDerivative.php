@@ -62,7 +62,7 @@ class SmartIpDerivative extends DeriverBase {
   public static function getCountryNameFromCode($country_code) {
     $country_list = \Drupal::service('country_manager')->getList();
     foreach ($country_list as $key => $value) {
-      if ($key == $country_code) {
+      if ($key === $country_code) {
         return $value->__toString();
       }
     }
