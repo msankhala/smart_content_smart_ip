@@ -1,0 +1,8 @@
+condition.smart_ip:
+  header: true
+  version: 1.x
+  js:
+    js/condition.smart_ip.js: { }
+  dependencies:
+    - smart_content/storage
+    - smart_content/condition_type.standard

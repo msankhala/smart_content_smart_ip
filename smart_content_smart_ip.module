@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\smart_ip\SmartIp;
 
 /**
  * Implements hook_help().
@@ -24,12 +25,14 @@ function smart_content_smart_ip_help($route_name, RouteMatchInterface $route_mat
 }
 
 /**
- * Implements hook_theme().
+ * Implements hook_preprocess_block().
  */
-function smart_content_smart_ip_theme() {
-  return [
-    'smart_content_smart_ip' => [
-      'render element' => 'children',
-    ],
-  ];
+function smart_content_smart_ip_preprocess_block(&$variables) {
+  // Varify if the block is Smart Content Decision Block.
+  if ($variables['base_plugin_id'] === 'smart_content_decision_block') {
+    // Attach JS Library.
+    $variables['#attached']['library'][] = 'smart_content_smart_ip/condtion.smart_ip';
+    // Pass variable to drupalSettings.
+    $variables['#attached']['drupalSettings']['smart_content_smart_ip'] = SmartIp::query();
+  }
 }

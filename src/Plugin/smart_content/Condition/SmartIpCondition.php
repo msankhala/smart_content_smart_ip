@@ -15,13 +15,19 @@ use Drupal\smart_content\Condition\ConditionTypeConfigurableBase;
  *   deriver = "Drupal\smart_content_smart_ip\Plugin\Derivative\SmartIpDerivative"
  * )
  */
-class BrowserCondition extends ConditionTypeConfigurableBase {
+class SmartIpCondition extends ConditionTypeConfigurableBase {
 
   /**
    * {@inheritdoc}
    */
   public function getLibraries() {
-    $libraries = array_unique(array_merge(parent::getLibraries(), ['smart_content_browser/condition.browser']));
+    $libraries = array_unique(array_merge(
+        parent::getLibraries(),
+        [
+          'smart_content_smart_ip/condition.smart_ip',
+        ]
+      )
+    );
     return $libraries;
   }
 
