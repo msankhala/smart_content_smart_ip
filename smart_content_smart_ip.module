@@ -33,6 +33,7 @@ function smart_content_smart_ip_preprocess_block(&$variables) {
     // Attach JS Library.
     $variables['#attached']['library'][] = 'smart_content_smart_ip/condtion.smart_ip';
     // Pass variable to drupalSettings.
-    $variables['#attached']['drupalSettings']['smart_content_smart_ip'] = SmartIp::query();
+    $ip_address = $_SERVER['HTTP_CF_CONNECTING_IP'];
+    $variables['#attached']['drupalSettings']['smart_content_smart_ip'] = SmartIp::query($ip_address);
   }
 }
