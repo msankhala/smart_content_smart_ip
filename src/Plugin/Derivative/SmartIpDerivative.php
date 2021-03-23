@@ -25,6 +25,10 @@ class SmartIpDerivative extends DeriverBase {
         'type' => 'select',
         'options_callback' => [get_class($this), 'getRegionOptions'],
       ] + $base_plugin_definition,
+      'new_user' => [
+        'label' => $this->t('New User'),
+        'type' => 'boolean',
+      ] + $base_plugin_definition,
     ];
     return $this->derivatives;
   }
