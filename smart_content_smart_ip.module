@@ -28,7 +28,7 @@ function smart_content_smart_ip_help($route_name, RouteMatchInterface $route_mat
  * Implements hook_preprocess_block().
  */
 function smart_content_smart_ip_preprocess_block(&$variables) {
-  // Varify if the block is Smart Content Decision Block.
+  // Verify if the block is Smart Content Decision Block.
   if ($variables['base_plugin_id'] === 'smart_content_decision_block') {
     // Attach JS Library.
     $variables['#attached']['library'][] = 'smart_content_smart_ip/condtion.smart_ip';
