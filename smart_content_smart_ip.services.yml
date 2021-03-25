@@ -1,0 +1,5 @@
+services:
+  smart_content_smart_ip.attach_decision_setting_subscriber:
+    class: Drupal\smart_content_smart_ip\EventSubscriber\AttachDecisionSettingsEventSubscriber
+    tags:
+      - { name: event_subscriber }
