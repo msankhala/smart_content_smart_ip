@@ -32,10 +32,32 @@ function smart_content_smart_ip_preprocess_block(&$variables) {
   if ($variables['base_plugin_id'] === 'smart_content_decision_block') {
     // Attach JS Library.
     $variables['#attached']['library'][] = 'smart_content_smart_ip/condtion.smart_ip';
+    // Disable cache
+    $variables['#cache']['max-age'] = 0;
+    // \Drupal::service('page_cache_kill_switch')->trigger();
+    // Set the visitor's IP address if available in cloudflare header otherwise
+    // use default IP address.
+    $ip_address = isset($_SERVER['HTTP_CF_CONNECTING_IP']) ? $_SERVER['HTTP_CF_CONNECTING_IP'] : '';
     // Pass variable to drupalSettings.
-    $ip_address = $_SERVER['HTTP_CF_CONNECTING_IP'];
+    // $variables['#attached']['library'][] = 'smart_content/smart_content';
     $variables['#attached']['drupalSettings']['smart_content_smart_ip'] = SmartIp::query($ip_address);
-    // Disable Cache for Smart Content Decision Blocks
-    $variables['elements']['#cache']['max-age'] = 0;
   }
 }
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function smart_content_smart_ip_preprocess_page(&$variables) {
+  // Check if ajax request and path is /ajax/smart_content/config_entit/*
+  $request = \Drupal::request();
+  $is_ajax = $request->isXmlHttpRequest();
+  $path = $request->getPathInfo();
+  // if ($is_ajax && strpos($path, "/ajax/smart_content/config_entity/") == 0) {
+    // Disable Cache for Smart Content Decision Blocks
+    // $variables['#cache']['max-age'] = 0;
+    // $variables['#cache']['contexts'][] = 'session';
+
+    // \Drupal::service('page_cache_kill_switch')->trigger();
+  // }
+}
+
