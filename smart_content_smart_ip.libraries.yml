@@ -6,3 +6,10 @@ condition.smart_ip:
   dependencies:
     - smart_content/storage
     - smart_content/condition_type.standard
+newsletter.signup:
+  header: true
+  version: 1.x
+  js:
+    js/newsletter_signup.js: { }
+
+
