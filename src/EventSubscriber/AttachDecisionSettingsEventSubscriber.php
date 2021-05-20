@@ -17,7 +17,6 @@ class AttachDecisionSettingsEventSubscriber implements EventSubscriberInterface 
    *   The attach decision setting event.
    */
   public function onAttachDecisionSettings(AttachDecisionSettingsEvent $event) {
-      // $test = $event;
   }
 
   /**
